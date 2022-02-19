@@ -20,5 +20,5 @@ public class OsterMillarDictionaryUtils {
     public static String YELLOW_POS_4 = "//*[@id=\"misplaced\"]/input[4]";
     public static String YELLOW_POS_5 = "//*[@id=\"misplaced\"]/input[5]";
     public static String GREY_BOX = "//*[@id=\"wrong\"]";
-    public static String SUGGESTED_WORD_1 = "//*[@id=\"words\"]/text()[1]";
+    public static String SUGGESTED_WORD_1 = "//*[@id=\"words\"]";
 }

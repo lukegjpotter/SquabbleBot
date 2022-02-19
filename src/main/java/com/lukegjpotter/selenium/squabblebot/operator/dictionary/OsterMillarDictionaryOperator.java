@@ -1,8 +1,12 @@
 package com.lukegjpotter.selenium.squabblebot.operator.dictionary;
 
+import com.lukegjpotter.selenium.squabblebot.operator.model.AttemptResult;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.Closeable;
 
 /**
  * OsterMillarDictionaryOperator.java
@@ -12,13 +16,104 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * The OsterMillar Website has a Worlde Calculator. This class operates that website. It places letters in the green,
  * yellow and grey boxes at the top. It then reads the suggested words and sends them back to the calling class.
  */
-public class OsterMillarDictionaryOperator {
+public class OsterMillarDictionaryOperator implements Closeable {
 
-    private WebDriver dictionaryWebDriver;
+    private final WebDriver dictionaryWebDriver;
 
     public OsterMillarDictionaryOperator() {
         dictionaryWebDriver = new ChromeDriver();
         dictionaryWebDriver.get("https://ostermiller.org/calc/wordle-helper.html");
+    }
+
+    public String applyAttemptResultAndGetNextSuggestion(AttemptResult attemptResult) {
+        // Apply Attempted Result
+        WebElement position1Element = null;
+        switch (attemptResult.getPosition1Colour()) {
+            case "Grey":
+                position1Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX));
+                break;
+            case "Yellow":
+                position1Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.YELLOW_POS_1));
+                break;
+            case "Green":
+                position1Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_1));
+                break;
+            default:
+                break;
+        }
+        assert position1Element != null;
+        position1Element.sendKeys(attemptResult.getPosition1Letter());
+
+        WebElement position2Element = null;
+        switch (attemptResult.getPosition2Colour()) {
+            case "Grey":
+                position2Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX));
+                break;
+            case "Yellow":
+                position2Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.YELLOW_POS_2));
+                break;
+            case "Green":
+                position2Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_2));
+                break;
+            default:
+                break;
+        }
+        assert position2Element != null;
+        position2Element.sendKeys(attemptResult.getPosition2Letter());
+
+        WebElement position3Element = null;
+        switch (attemptResult.getPosition3Colour()) {
+            case "Grey":
+                position3Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX));
+                break;
+            case "Yellow":
+                position3Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.YELLOW_POS_3));
+                break;
+            case "Green":
+                position3Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_3));
+                break;
+            default:
+                break;
+        }
+        assert position3Element != null;
+        position3Element.sendKeys(attemptResult.getPosition3Letter());
+
+        WebElement position4Element = null;
+        switch (attemptResult.getPosition4Colour()) {
+            case "Grey":
+                position4Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX));
+                break;
+            case "Yellow":
+                position4Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.YELLOW_POS_4));
+                break;
+            case "Green":
+                position4Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_4));
+                break;
+            default:
+                break;
+        }
+        assert position4Element != null;
+        position4Element.sendKeys(attemptResult.getPosition4Letter());
+
+        WebElement position5Element = null;
+        switch (attemptResult.getPosition5Colour()) {
+            case "Grey":
+                position5Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX));
+                break;
+            case "Yellow":
+                position5Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.YELLOW_POS_5));
+                break;
+            case "Green":
+                position5Element = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_5));
+                break;
+            default:
+                break;
+        }
+        assert position5Element != null;
+        position5Element.sendKeys(attemptResult.getPosition5Letter());
+
+        // Get next suggestion.
+        return dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.SUGGESTED_WORD_1)).getText().substring(0, 5).trim();
     }
 
     public void clear() {
@@ -38,5 +133,11 @@ public class OsterMillarDictionaryOperator {
 
         // Grey Guesses
         dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX)).clear();
+    }
+
+    @Override
+    public void close() {
+        dictionaryWebDriver.close();
+        dictionaryWebDriver.quit();
     }
 }
