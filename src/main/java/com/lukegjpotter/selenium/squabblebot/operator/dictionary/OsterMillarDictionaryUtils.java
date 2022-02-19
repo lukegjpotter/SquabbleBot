@@ -1,5 +1,12 @@
 package com.lukegjpotter.selenium.squabblebot.operator.dictionary;
 
+/**
+ * OsterMillarDictionaryUtils.java
+ *
+ * @author lukegjpotter
+ * <p>
+ * A Utils class for the {@code OsterMillarDictionaryOperator} class. It has the XPath for the boxes on the UI.
+ */
 public class OsterMillarDictionaryUtils {
     // XPath strings
     public static String GREEN_POS_1 = "//*[@id=\"right\"]/input[1]";

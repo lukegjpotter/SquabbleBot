@@ -4,6 +4,13 @@ import com.lukegjpotter.selenium.squabblebot.operator.dictionary.OsterMillarDict
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+/**
+ * Main.java
+ *
+ * @author lukegjpotter
+ * <p>
+ * The Main class. This controls the start, setup and finish of the Program.
+ */
 public class Main {
 
     public static void main(String[] args) {

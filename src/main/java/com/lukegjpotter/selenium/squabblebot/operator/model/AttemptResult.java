@@ -1,5 +1,12 @@
 package com.lukegjpotter.selenium.squabblebot.operator.model;
 
+/**
+ * AttemptResult.java
+ *
+ * @author lukegjpotter
+ * <p>
+ * A class to model the Result of an Attempt in Squabble. It captures the colours and letters of the attempt.
+ */
 public class AttemptResult {
     // Letters in Positions
     private String position1Letter, position2Letter, position3Letter, position4Letter, position5Letter;
