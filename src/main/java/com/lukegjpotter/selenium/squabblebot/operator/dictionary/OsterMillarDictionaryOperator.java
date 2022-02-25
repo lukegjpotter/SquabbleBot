@@ -41,8 +41,8 @@ public class OsterMillarDictionaryOperator implements Closeable {
             default:
                 break;
         }
-        assert position1Element != null;
-        position1Element.sendKeys(attemptResult.getPosition1Letter());
+        if (position1Element != null) position1Element.sendKeys(attemptResult.getPosition1Letter());
+        // todo Add Logger and Else Log and Error that element was not found.
 
         WebElement position2Element = null;
         switch (attemptResult.getPosition2Colour()) {
@@ -58,8 +58,8 @@ public class OsterMillarDictionaryOperator implements Closeable {
             default:
                 break;
         }
-        assert position2Element != null;
-        position2Element.sendKeys(attemptResult.getPosition2Letter());
+        if (position2Element != null) position2Element.sendKeys(attemptResult.getPosition2Letter());
+        // Else Log and Error that it was not found.
 
         WebElement position3Element = null;
         switch (attemptResult.getPosition3Colour()) {
@@ -75,8 +75,8 @@ public class OsterMillarDictionaryOperator implements Closeable {
             default:
                 break;
         }
-        assert position3Element != null;
-        position3Element.sendKeys(attemptResult.getPosition3Letter());
+        if (position3Element != null) position3Element.sendKeys(attemptResult.getPosition3Letter());
+        // Else Log and Error that it was not found.
 
         WebElement position4Element = null;
         switch (attemptResult.getPosition4Colour()) {
@@ -92,8 +92,8 @@ public class OsterMillarDictionaryOperator implements Closeable {
             default:
                 break;
         }
-        assert position4Element != null;
-        position4Element.sendKeys(attemptResult.getPosition4Letter());
+        if (position4Element != null) position4Element.sendKeys(attemptResult.getPosition4Letter());
+        // Else Log and Error that it was not found.
 
         WebElement position5Element = null;
         switch (attemptResult.getPosition5Colour()) {
@@ -109,8 +109,8 @@ public class OsterMillarDictionaryOperator implements Closeable {
             default:
                 break;
         }
-        assert position5Element != null;
-        position5Element.sendKeys(attemptResult.getPosition5Letter());
+        if (position5Element != null) position5Element.sendKeys(attemptResult.getPosition5Letter());
+        // Else Log and Error that it was not found.
 
         // Get next suggestion.
         return dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.SUGGESTED_WORD_1)).getText().substring(0, 5).trim();
