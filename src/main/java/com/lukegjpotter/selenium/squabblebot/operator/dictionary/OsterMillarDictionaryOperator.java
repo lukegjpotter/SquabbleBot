@@ -127,6 +127,7 @@ public class OsterMillarDictionaryOperator implements Closeable {
     }
 
     public void clear() {
+        log.info("Clearing");
         // Green Guesses
         dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_1)).clear();
         dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREEN_POS_2)).clear();
@@ -143,6 +144,8 @@ public class OsterMillarDictionaryOperator implements Closeable {
 
         // Grey Guesses
         dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.GREY_BOX)).clear();
+
+        log.info("Cleared");
     }
 
     @Override
