@@ -1,5 +1,8 @@
 package com.lukegjpotter.selenium.squabblebot.operator.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * AttemptResult.java
  *
@@ -12,6 +15,7 @@ public class AttemptResult {
     private String position1Letter, position2Letter, position3Letter, position4Letter, position5Letter;
     // Colours in Positions
     private String position1Colour, position2Colour, position3Colour, position4Colour, position5Colour;
+    private final Logger log = LoggerFactory.getLogger(AttemptResult.class);
 
     public AttemptResult(String position1Letter, String position2Letter, String position3Letter, String position4Letter, String position5Letter, String position1Colour, String position2Colour, String position3Colour, String position4Colour, String position5Colour) {
         this.position1Letter = position1Letter;
@@ -24,6 +28,8 @@ public class AttemptResult {
         this.position3Colour = position3Colour;
         this.position4Colour = position4Colour;
         this.position5Colour = position5Colour;
+
+        log.info("New AttemptResult for: " + position1Letter + position2Letter + position3Letter + position4Letter + position5Letter);
     }
 
     public String getPosition1Letter() {

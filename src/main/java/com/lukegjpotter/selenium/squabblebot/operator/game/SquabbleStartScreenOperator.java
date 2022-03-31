@@ -1,5 +1,8 @@
 package com.lukegjpotter.selenium.squabblebot.operator.game;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * SquabbleStartScreenOperator.java
  *
@@ -9,4 +12,6 @@ package com.lukegjpotter.selenium.squabblebot.operator.game;
  * hands off to {@code SquabbleGameplayLoopOperator} to play the game.
  */
 public class SquabbleStartScreenOperator {
+
+    private final Logger log = LoggerFactory.getLogger(SquabbleStartScreenOperator.class);
 }

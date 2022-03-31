@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
 
@@ -19,14 +21,25 @@ import java.io.Closeable;
 public class OsterMillarDictionaryOperator implements Closeable {
 
     private final WebDriver dictionaryWebDriver;
+    private final Logger log = LoggerFactory.getLogger(OsterMillarDictionaryOperator.class);
 
     public OsterMillarDictionaryOperator() {
         dictionaryWebDriver = new ChromeDriver();
         dictionaryWebDriver.get("https://ostermiller.org/calc/wordle-helper.html");
+        log.info("OsterMiller Dictionary Page Opened.");
     }
 
     public String applyAttemptResultAndGetNextSuggestion(AttemptResult attemptResult) {
         // Apply Attempted Result
+        applyAttemptResult(attemptResult);
+        // Get next suggestion.
+        String nextSuggestion = dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.SUGGESTED_WORD_1)).getText().substring(0, 5).trim();
+        log.info("Next Suggestion is: " + nextSuggestion);
+
+        return nextSuggestion;
+    }
+
+    private void applyAttemptResult(AttemptResult attemptResult) {
         WebElement position1Element = null;
         switch (attemptResult.getPosition1Colour()) {
             case "Grey":
@@ -42,7 +55,7 @@ public class OsterMillarDictionaryOperator implements Closeable {
                 break;
         }
         if (position1Element != null) position1Element.sendKeys(attemptResult.getPosition1Letter());
-        // todo Add Logger and Else Log and Error that element was not found.
+        // Else Log and Error that element was not found.
 
         WebElement position2Element = null;
         switch (attemptResult.getPosition2Colour()) {
@@ -111,9 +124,6 @@ public class OsterMillarDictionaryOperator implements Closeable {
         }
         if (position5Element != null) position5Element.sendKeys(attemptResult.getPosition5Letter());
         // Else Log and Error that it was not found.
-
-        // Get next suggestion.
-        return dictionaryWebDriver.findElement(By.xpath(OsterMillarDictionaryUtils.SUGGESTED_WORD_1)).getText().substring(0, 5).trim();
     }
 
     public void clear() {
@@ -139,5 +149,6 @@ public class OsterMillarDictionaryOperator implements Closeable {
     public void close() {
         dictionaryWebDriver.close();
         dictionaryWebDriver.quit();
+        log.info("OsterMiller Dictionary Page Closed.");
     }
 }

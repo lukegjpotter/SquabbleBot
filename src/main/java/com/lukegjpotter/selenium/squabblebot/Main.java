@@ -3,6 +3,8 @@ package com.lukegjpotter.selenium.squabblebot;
 import com.lukegjpotter.selenium.squabblebot.operator.dictionary.OsterMillarDictionaryOperator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main.java
@@ -13,15 +15,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class Main {
 
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
+        log.info("SquabbleBot Starting");
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/chromedriver");
         WebDriver squabbleWebDriver = new ChromeDriver();
 
         OsterMillarDictionaryOperator dictionaryOperator = new OsterMillarDictionaryOperator();
 
-
         // End Program
         squabbleWebDriver.close();
+        log.info("SquabbleBot Ending");
         System.exit(0);
     }
 }
