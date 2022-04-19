@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "eu.leontebbens.gradle.chromedriver-updater" version "1.7.0"
 }
 
 group 'com.lukegjpotter.selenium.squabblebot'
@@ -19,4 +20,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+task chromeDriverOperations(dependsOn: updateChromedriver) {
+    File propertiesFile = new File('src/main/resources/chromedriverlocation.properties')
+    propertiesFile.setText("webdriver.chrome.driver=" + updateChromedriver.driverLocation)
 }

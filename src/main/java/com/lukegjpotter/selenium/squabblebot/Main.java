@@ -1,6 +1,7 @@
 package com.lukegjpotter.selenium.squabblebot;
 
 import com.lukegjpotter.selenium.squabblebot.operator.dictionary.OsterMillarDictionaryOperator;
+import com.lukegjpotter.selenium.squabblebot.operator.util.ChromeDriverPropertiesFileHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.slf4j.Logger;
@@ -19,7 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("SquabbleBot Starting");
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/build/chromedriver/mac/chromedriver");
+        ChromeDriverPropertiesFileHandler.setChromeDriverSystemProperties();
         WebDriver squabbleWebDriver = new ChromeDriver();
 
         OsterMillarDictionaryOperator dictionaryOperator = new OsterMillarDictionaryOperator();

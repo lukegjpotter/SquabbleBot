@@ -1,6 +1,7 @@
 package com.lukegjpotter.selenium.squabblebot.operator.dictionary;
 
 import com.lukegjpotter.selenium.squabblebot.operator.model.AttemptResult;
+import com.lukegjpotter.selenium.squabblebot.operator.util.ChromeDriverPropertiesFileHandler;
 import com.lukegjpotter.selenium.squabblebot.operator.util.Constants;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,7 +17,8 @@ class OsterMillarDictionaryOperatorTest {
 
     @BeforeAll
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/resources/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/build/chromedriver/mac/chromedriver");
+        ChromeDriverPropertiesFileHandler.setChromeDriverSystemProperties();
     }
 
     @BeforeEach
