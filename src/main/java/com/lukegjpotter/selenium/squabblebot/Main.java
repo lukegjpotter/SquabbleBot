@@ -20,7 +20,6 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("SquabbleBot Starting");
-        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/build/chromedriver/mac/chromedriver");
         ChromeDriverPropertiesFileHandler.setChromeDriverSystemProperties();
         WebDriver squabbleWebDriver = new ChromeDriver();
 
